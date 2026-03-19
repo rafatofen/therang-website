@@ -92,8 +92,9 @@ export default function Home() {
     return cms?.imageUrl || defaultImg;
   });
 
-  // Hero video URL from CMS or fallback
-  const videoUrl = heroVideo?.imageUrl || VIDEO_URL_DEFAULT;
+  // Hero video URL from CMS or fallback (cache-busted with updatedAt)
+  const rawVideoUrl = heroVideo?.imageUrl || VIDEO_URL_DEFAULT;
+  const videoUrl = heroVideo?.updatedAt ? rawVideoUrl + "?v=" + new Date(heroVideo.updatedAt).getTime() : rawVideoUrl;
   const heroPoster = hero?.imageUrl || HERO_POOL;
 
   // Use DB testimonials or fallback
