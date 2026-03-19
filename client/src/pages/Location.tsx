@@ -9,12 +9,15 @@ import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageSkeleton from "@/components/PageSkeleton";
 import { MapPin, Clock, Waves, UtensilsCrossed, Dumbbell, ExternalLink } from "lucide-react";
-import { useSiteContent } from "@/hooks/useCmsContent";
+import { useSiteContent, useSiteLinks } from "@/hooks/useCmsContent";
 
 const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37";
 const CLIFF_AERIAL = `${CDN}/uluwatu-cliff-aerial-oNZekmYsnH9nNSqa8KvQJT.webp`;
 const SUNSET = `${CDN}/bali-ocean-sunset-Z9rMjV67zYWT98s87jGFhB.webp`;
 const ADD5 = `${CDN}/additional_5_ad208b16.jpeg`;
+
+const MAPS_EMBED_DEFAULT = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d115.0870!3d-8.8140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDgnNTAuNCJTIDExNcKwMDUnMTMuMiJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid";
+const MAPS_URL_DEFAULT = "https://maps.google.com/?q=-8.814,115.087";
 
 const nearbyAttractions = [
   {
@@ -82,6 +85,7 @@ const localFavouritesDefault = [
 
 export default function Location() {
   const { getContent, isLoading } = useSiteContent();
+  const { getLink } = useSiteLinks();
 
   if (isLoading) return <PageSkeleton />;
 
@@ -94,6 +98,10 @@ export default function Location() {
   const heroTitle = hero?.title || "Location";
   const heroSubtitle = hero?.subtitle || "Bahari Complex, Suluban Cliff — Uluwatu's most coveted address.";
   const mapText = mapSection?.body || "The Rang is located in the Bahari Complex on Suluban Cliff, Uluwatu — Bali's most prestigious coastal address.";
+
+  // Maps from Links CMS
+  const mapsEmbedUrl = getLink("google_maps_embed") !== "#" ? getLink("google_maps_embed") : MAPS_EMBED_DEFAULT;
+  const mapsUrl = getLink("google_maps_url") !== "#" ? getLink("google_maps_url") : MAPS_URL_DEFAULT;
 
   // Parse travel times from CMS body (format: "Airport: 45 min\nSeminyak: 50 min")
   const travelTimes = travelSection?.body
@@ -161,7 +169,7 @@ export default function Location() {
           <ScrollReveal>
             <div className="w-full aspect-[16/9] bg-[#F0F0EC] overflow-hidden border border-black/10">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d115.0870!3d-8.8140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDgnNTAuNCJTIDExNcKwMDUnMTMuMiJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                src={mapsEmbedUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -176,7 +184,7 @@ export default function Location() {
           <ScrollReveal>
             <div className="text-center mt-8">
               <a
-                href="https://maps.google.com/?q=-8.814,115.087"
+                href={mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline inline-flex items-center gap-2"
