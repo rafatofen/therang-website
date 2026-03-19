@@ -67,7 +67,7 @@ const defaultPartners = [
 
 export default function Partners() {
   const { partners: dbPartners, isLoading } = usePartners();
-  const { getLink, isLoading } = useSiteLinks();
+  const { getLink } = useSiteLinks();
 
   // Use DB partners or fallback
   const partners = dbPartners.length > 0 ? dbPartners : defaultPartners;
