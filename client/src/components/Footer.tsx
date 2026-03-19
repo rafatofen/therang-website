@@ -76,6 +76,17 @@ export default function Footer() {
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} The Rang Uluwatu. All Rights Reserved.
           </p>
+          <p className="text-xs text-white/30">
+            Website developed by{" "}
+            <a
+              href="https://rafatofen.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-colors"
+            >
+              Rafael Thofehrn
+            </a>
+          </p>
           <div className="flex items-center gap-6">
             <a
               href={instagramLink}
