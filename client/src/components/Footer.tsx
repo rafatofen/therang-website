@@ -57,8 +57,8 @@ export default function Footer() {
               Address
             </h4>
             <p className="text-sm text-white/60 leading-relaxed mb-6">
-              Bahari Complex, Suluban Cliff,<br />
-              South Kuta, Bali, Indonesia
+              Jl. Labuansait No.83, Pecatu,<br />
+              Kuta Selatan, Bali 80361, Indonesia
             </p>
             <a
               href={airbnbLink}
@@ -75,17 +75,6 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} The Rang Uluwatu. All Rights Reserved.
-          </p>
-          <p className="text-xs text-white/30">
-            Website developed by{" "}
-            <a
-              href="https://rafatofen.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              Rafael Thofehrn
-            </a>
           </p>
           <div className="flex items-center gap-6">
             <a
