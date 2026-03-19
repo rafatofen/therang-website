@@ -51,7 +51,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
+          {/* Address */}
           <div>
             <h4 className="text-[11px] tracking-[0.2em] uppercase font-medium text-white/40 mb-6">
               Address
@@ -75,6 +75,17 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} The Rang Uluwatu. All Rights Reserved.
+          </p>
+          <p className="text-xs text-white/30">
+            Website developed by{" "}
+            <a
+              href="https://rafatofen.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-colors"
+            >
+              Rafael Thofehrn
+            </a>
           </p>
           <div className="flex items-center gap-6">
             <a
