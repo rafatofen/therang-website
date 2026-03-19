@@ -7,7 +7,7 @@ import { trpc } from "@/lib/trpc";
 // ===== CONTENT HOOK =====
 export function useSiteContent() {
   const { data: contentList, isLoading } = trpc.content.getAll.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+    staleTime: 30 * 1000, // 30 seconds
     retry: 1,
   });
 
@@ -22,7 +22,7 @@ export function useSiteContent() {
 // ===== TESTIMONIALS HOOK =====
 export function useTestimonials() {
   const { data: testimonials, isLoading } = trpc.testimonials.getVisible.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
     retry: 1,
   });
 
@@ -32,17 +32,17 @@ export function useTestimonials() {
 // ===== PARTNERS HOOK =====
 export function usePartners() {
   const { data: partners, isLoading } = trpc.partners.getVisible.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
     retry: 1,
   });
 
-  return { partners: partners || [], isLoading };
+  return { partners: partners || [], isLoading }; 
 }
 
 // ===== LINKS HOOK =====
 export function useSiteLinks() {
   const { data: links, isLoading } = trpc.links.getAll.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
     retry: 1,
   });
 
@@ -58,7 +58,7 @@ export function useSiteLinks() {
 // ===== SEO HOOK =====
 export function useSeo(pageKey: string) {
   const { data: seo } = trpc.seo.getByPage.useQuery({ pageKey }, {
-    staleTime: 10 * 60 * 1000,
+    staleTime: 30 * 1000,
     retry: 1,
   });
 
