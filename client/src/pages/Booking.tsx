@@ -4,6 +4,7 @@
  */
 
 import Navbar from "@/components/Navbar";
+import PageSkeleton from "@/components/PageSkeleton";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -57,9 +58,10 @@ const houseRules = [
 ];
 
 export default function Booking() {
-  const { getLink } = useSiteLinks();
+  const { getLink, isLoading } = useSiteLinks();
   const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
 
+  if (isLoading) return <PageSkeleton />;
   return (
     <div className="min-h-screen">
       <SeoHead

@@ -5,7 +5,7 @@
  */
 
 import { Link } from "wouter";
-import { useState, useEffect } from "react";
+import PageSkeleton from "@/components/PageSkeleton";
 import { motion } from "framer-motion";
 import { ArrowDown, Star, MapPin, Quote } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -64,7 +64,7 @@ const defaultPartners = [
 const defaultGalleryImages = [HERO_POOL, MASTER_BED, KITCHEN, DINING, POOL, ADD1_TERRACE, ADD5, ADD10];
 
 export default function Home() {
-  const { getContent } = useSiteContent();
+  const { getContent, isLoading } = useSiteContent();
   const { testimonials: dbTestimonials } = useTestimonials();
   const { partners: dbPartners } = usePartners();
   const { getLink } = useSiteLinks();
@@ -93,19 +93,8 @@ export default function Home() {
     return cms?.imageUrl || defaultImg;
   });
 
-  // Hero video URL — use localStorage to avoid flash of old video
-  const STORAGE_KEY = "therang_video_url";
-  const cachedVideoUrl = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
-  const freshVideoUrl = heroVideo?.imageUrl || null;
-  
-  useEffect(() => {
-    if (freshVideoUrl) {
-      localStorage.setItem(STORAGE_KEY, freshVideoUrl);
-    }
-  }, [freshVideoUrl]);
-
-  const videoUrl = freshVideoUrl || cachedVideoUrl || VIDEO_URL_DEFAULT;
-  const isLoading = !heroVideo;
+  // Hero video URL from CMS or fallback
+  const videoUrl = heroVideo?.imageUrl || VIDEO_URL_DEFAULT;
   const heroPoster = hero?.imageUrl || HERO_POOL;
 
   // Use DB testimonials or fallback
@@ -122,6 +111,7 @@ export default function Home() {
   const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
   const reviewsLink = getLink("google_reviews") !== "#" ? getLink("google_reviews") : "https://share.google/8bJHJBoHSHolISFu5";
 
+  if (isLoading) return <PageSkeleton />;
   return (
     <div className="min-h-screen">
       <SeoHead
@@ -133,24 +123,16 @@ export default function Home() {
 
       {/* ===== SECTION 1: HERO VIDEO ===== */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        {isLoading && !cachedVideoUrl ? (
-          <img
-            src={heroPoster}
-            alt="The Rang Uluwatu"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <video
-            key={videoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            src={videoUrl}
-            className="absolute inset-0 w-full h-full object-cover"
-            poster={heroPoster}
-          />
-        )}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster={heroPoster}
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 text-center px-6">

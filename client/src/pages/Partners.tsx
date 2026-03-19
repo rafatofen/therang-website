@@ -4,6 +4,7 @@
  */
 
 import Navbar from "@/components/Navbar";
+import PageSkeleton from "@/components/PageSkeleton";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -65,13 +66,14 @@ const defaultPartners = [
 ];
 
 export default function Partners() {
-  const { partners: dbPartners } = usePartners();
-  const { getLink } = useSiteLinks();
+  const { partners: dbPartners, isLoading } = usePartners();
+  const { getLink, isLoading } = useSiteLinks();
 
   // Use DB partners or fallback
   const partners = dbPartners.length > 0 ? dbPartners : defaultPartners;
   const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
 
+  if (isLoading) return <PageSkeleton />;
   return (
     <div className="min-h-screen">
       <SeoHead

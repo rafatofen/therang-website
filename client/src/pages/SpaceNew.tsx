@@ -6,6 +6,7 @@
  */
 
 import { Link } from "wouter";
+import PageSkeleton from "@/components/PageSkeleton";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -70,7 +71,7 @@ function GalleryImage({ src, alt, className = "" }: { src: string; alt: string; 
 }
 
 export default function SpaceNew() {
-  const { getContent } = useSiteContent();
+  const { getContent, isLoading } = useSiteContent();
 
   // Helper: get imageUrl from CMS or fallback
   const img = (sectionKey: string, fallback: string): string => {
@@ -172,6 +173,7 @@ export default function SpaceNew() {
     },
   ];
 
+  if (isLoading) return <PageSkeleton />;
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
