@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/hero-video_b6863f29.mp4' WHERE sectionKey = 'home.hero_video'; UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/hero_pool_view_1262a7be.jpeg' WHERE sectionKey = 'home.hero' AND (imageUrl IS NULL OR imageUrl = '');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2nt7vuBiZY7aziB.root --database YUz2cqTs4AvjUqQvfTGS37 --execute UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/hero-video_b6863f29.mp4' WHERE sectionKey = 'home.hero_video'; UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/hero_pool_view_1262a7be.jpeg' WHERE sectionKey = 'home.hero' AND (imageUrl IS NULL OR imageUrl = '');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1827
+}

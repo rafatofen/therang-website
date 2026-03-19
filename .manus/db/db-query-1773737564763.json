@@ -1,0 +1,15 @@
+{
+  "query": "SELECT sectionKey, title, subtitle FROM site_content WHERE sectionKey = 'home.hero'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2nt7vuBiZY7aziB.root --database YUz2cqTs4AvjUqQvfTGS37 --execute SELECT sectionKey, title, subtitle FROM site_content WHERE sectionKey = 'home.hero'",
+  "rows": [
+    {
+      "sectionKey": "home.hero",
+      "title": "THE RANG",
+      "subtitle": "A Sculptural, Coastal Masterpiece — TEST"
+    }
+  ],
+  "messages": [],
+  "stdout": "sectionKey\ttitle\tsubtitle\nhome.hero\tTHE RANG\tA Sculptural, Coastal Masterpiece — TEST\n",
+  "stderr": "",
+  "execution_time_ms": 1516
+}

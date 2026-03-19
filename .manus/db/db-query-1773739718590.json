@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/bedroom_2_4c60dfb0.jpeg' WHERE sectionKey = 'space.bedrooms' AND (imageUrl IS NULL OR imageUrl = '' OR imageUrl LIKE '%bedroom_2_f3d3a9f3%');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2nt7vuBiZY7aziB.root --database YUz2cqTs4AvjUqQvfTGS37 --execute UPDATE site_content SET imageUrl = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37/bedroom_2_4c60dfb0.jpeg' WHERE sectionKey = 'space.bedrooms' AND (imageUrl IS NULL OR imageUrl = '' OR imageUrl LIKE '%bedroom_2_f3d3a9f3%');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1557
+}

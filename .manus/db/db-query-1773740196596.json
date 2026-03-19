@@ -1,0 +1,9 @@
+{
+  "query": "\nDELETE FROM site_content WHERE sectionKey LIKE 'space.%';\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2nt7vuBiZY7aziB.root --database YUz2cqTs4AvjUqQvfTGS37 --execute \nDELETE FROM site_content WHERE sectionKey LIKE 'space.%';\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1578
+}
