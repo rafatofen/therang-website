@@ -7,7 +7,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
-import { MapPin, Clock, Waves, UtensilsCrossed, Dumbbell, ExternalLink, Star } from "lucide-react";
+import PageSkeleton from "@/components/PageSkeleton";
+import { MapPin, Clock, Waves, UtensilsCrossed, Dumbbell, ExternalLink } from "lucide-react";
+import { useSiteContent } from "@/hooks/useCmsContent";
 
 const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37";
 const CLIFF_AERIAL = `${CDN}/uluwatu-cliff-aerial-oNZekmYsnH9nNSqa8KvQJT.webp`;
@@ -58,14 +60,14 @@ const nearbyAttractions = [
   },
 ];
 
-const travelTimes = [
+const travelTimesDefault = [
   { from: "Ngurah Rai Airport", time: "35 min" },
   { from: "Seminyak", time: "45 min" },
   { from: "Canggu", time: "55 min" },
   { from: "Ubud", time: "1 hr 30 min" },
 ];
 
-const localFavourites = [
+const localFavouritesDefault = [
   {
     name: "Mana Uluwatu",
     desc: "A relaxed cliffside retreat ideal for long afternoons by the pool, fresh coconuts, and sunset views.",
@@ -79,14 +81,48 @@ const localFavourites = [
 ];
 
 export default function Location() {
+  const { getContent, isLoading } = useSiteContent();
+
+  if (isLoading) return <PageSkeleton />;
+
+  const hero = getContent("location.hero");
+  const mapSection = getContent("location.map");
+  const travelSection = getContent("location.travel");
+  const favouritesSection = getContent("location.favourites");
+
+  const heroImage = hero?.imageUrl || CLIFF_AERIAL;
+  const heroTitle = hero?.title || "Location";
+  const heroSubtitle = hero?.subtitle || "Bahari Complex, Suluban Cliff — Uluwatu's most coveted address.";
+  const mapText = mapSection?.body || "The Rang is located in the Bahari Complex on Suluban Cliff, Uluwatu — Bali's most prestigious coastal address.";
+
+  // Parse travel times from CMS body (format: "Airport: 45 min\nSeminyak: 50 min")
+  const travelTimes = travelSection?.body
+    ? travelSection.body.split("\n").map(line => {
+        const [from, time] = line.split(": ");
+        return { from: from?.trim(), time: time?.trim() };
+      }).filter(t => t.from && t.time)
+    : travelTimesDefault;
+
+  // Parse local favourites from CMS body (format: "Name: Description")
+  const localFavourites = favouritesSection?.body
+    ? favouritesSection.body.split("\n").map(line => {
+        const colonIdx = line.indexOf(": ");
+        return {
+          name: line.substring(0, colonIdx).trim(),
+          desc: line.substring(colonIdx + 2).trim(),
+          type: "",
+        };
+      }).filter(f => f.name && f.desc)
+    : localFavouritesDefault;
+
   return (
     <div className="min-h-screen">
       <Navbar />
 
       <PageHero
-        title="Location"
-        subtitle="Bahari Complex, Suluban Cliff — Uluwatu's most coveted address."
-        image={CLIFF_AERIAL}
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        image={heroImage}
       />
 
       {/* Intro */}
@@ -99,7 +135,7 @@ export default function Location() {
               </h2>
               <hr className="section-divider mx-auto" />
               <p className="text-black/60 leading-[1.8] text-[15px]">
-                Uluwatu has evolved into Bali's premier destination for elevated coastal living. The Rang is located in the exclusive Bahari Complex on Suluban Cliff, offering unmatched proximity to world-class surf breaks, dining, and natural beauty.
+                {mapText}
               </p>
             </div>
           </ScrollReveal>
@@ -230,9 +266,11 @@ export default function Location() {
                     <div key={fav.name}>
                       <div className="flex items-baseline gap-3 mb-2">
                         <h3 className="font-serif text-xl font-light">{fav.name}</h3>
-                        <span className="text-[11px] tracking-[0.15em] uppercase text-black/40 font-medium">
-                          {fav.type}
-                        </span>
+                        {fav.type && (
+                          <span className="text-[11px] tracking-[0.15em] uppercase text-black/40 font-medium">
+                            {fav.type}
+                          </span>
+                        )}
                       </div>
                       <p className="text-black/60 text-sm leading-relaxed">{fav.desc}</p>
                     </div>
