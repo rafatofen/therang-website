@@ -108,6 +108,7 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     sections: [
       { key: "tour.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
       { key: "tour.embed", label: "Matterport Embed URL", fields: ["body"] },
+      { key: "tour.highlights_section", label: "Tour Highlights — Title & Description", fields: ["title", "body"] },
       { key: "tour.highlight_1", label: "Highlight 1 — Living Spaces", fields: ["title", "body", "imageUrl"] },
       { key: "tour.highlight_2", label: "Highlight 2 — Infinity Pool", fields: ["title", "body", "imageUrl"] },
       { key: "tour.highlight_3", label: "Highlight 3 — Master Suite", fields: ["title", "body", "imageUrl"] },

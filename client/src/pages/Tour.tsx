@@ -80,20 +80,20 @@ export default function Tour() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="font-serif text-3xl md:text-4xl font-light mb-6 tracking-tight">
-                Tour Highlights
+                {getContent("tour.highlights_section")?.title || "Tour Highlights"}
               </h2>
               <hr className="section-divider mx-auto" />
               <p className="text-black/60 leading-[1.8] text-[15px] max-w-xl mx-auto">
-                Navigate through these key areas during your virtual tour to get a feel for the villa's unique character.
+                {getContent("tour.highlights_section")?.body || "Navigate through these key areas during your virtual tour to get a feel for the villa's unique character."}
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: getContent("tour.highlight_1")?.title || "Living Spaces", desc: getContent("tour.highlight_1")?.body || "Discover the open-plan living areas with their seamless indoor-outdoor flow and stunning ocean views.", image: getContent("tour.highlight_1")?.imageUrl || LIVING },
-              { title: getContent("tour.highlight_2")?.title || "Infinity Pool", desc: getContent("tour.highlight_2")?.body || "Experience the 25-meter infinity pool with hand-cut marble tiles and panoramic ocean views.", image: getContent("tour.highlight_2")?.imageUrl || POOL },
-              { title: getContent("tour.highlight_3")?.title || "Master Suite", desc: getContent("tour.highlight_3")?.body || "Explore the expansive master suite with its private balcony and breathtaking views.", image: getContent("tour.highlight_3")?.imageUrl || MASTER_BED },
+              { title: "Living Spaces", desc: "Discover the open-plan living areas with their seamless indoor-outdoor flow and stunning ocean views.", image: LIVING },
+              { title: "Infinity Pool", desc: "Experience the 25-meter infinity pool with hand-cut marble tiles and panoramic ocean views.", image: POOL },
+              { title: "Master Suite", desc: "Explore the expansive master suite with its private balcony and breathtaking views.", image: MASTER_BED },
             ].map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.15}>
                 <div className="group">
