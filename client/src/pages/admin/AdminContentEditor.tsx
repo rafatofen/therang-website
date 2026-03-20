@@ -92,10 +92,11 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     label: "Location Page",
     sections: [
       { key: "location.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
-      { key: "location.map", label: "Map Section", fields: ["title", "body"] },
+      { key: "location.map", label: "Intro Section (title = heading, body = text)", fields: ["title", "body"] },
       { key: "location.key_features", label: "Key Features (one per line)", fields: ["body"] },
       { key: "location.travel", label: "Travel Times (format: Place: 45 min)", fields: ["title", "body"] },
       { key: "location.favourites", label: "Local Favourites (format: Name: Description)", fields: ["title", "body", "imageUrl"] },
+      { key: "location.cta", label: "CTA Section", fields: ["title", "body", "buttonText", "imageUrl"] },
     ],
   },
   tour: {

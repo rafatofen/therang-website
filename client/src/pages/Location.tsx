@@ -139,7 +139,7 @@ export default function Location() {
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-serif text-3xl md:text-4xl font-light mb-6 tracking-tight">
-                Where Jungle Meets Cliff
+                {mapSection?.title || "Where Jungle Meets Cliff"}
               </h2>
               <hr className="section-divider mx-auto" />
               <p className="text-black/60 leading-[1.8] text-[15px]">
@@ -148,24 +148,21 @@ export default function Location() {
             </div>
           </ScrollReveal>
 
-          {/* Key Features — editable in admin under location.key_features */}
+          {/* Key Features */}
           <ScrollReveal>
-            {(() => {
-              const featuresCms = getContent("location.key_features");
-              const features = featuresCms?.body
-                ? featuresCms.body.split("\n").filter(Boolean)
-                : ["Unmatched cliffside vistas", "World-class dining", "Premium wellness culture", "Renowned surf breaks", "Cultural authenticity"];
-              const cols = features.length <= 4 ? `grid-cols-${features.length}` : "grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
-              return (
-                <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16`}>
-                  {features.map((f) => (
-                    <div key={f} className="text-center border border-black/10 p-5">
-                      <p className="text-sm text-black/60">{f}</p>
-                    </div>
-                  ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+              {[
+                "Unmatched cliffside vistas",
+                "World-class dining",
+                "Premium wellness culture",
+                "Renowned surf breaks",
+                "Cultural authenticity",
+              ].map((f) => (
+                <div key={f} className="text-center border border-black/10 p-5">
+                  <p className="text-sm text-black/60">{f}</p>
                 </div>
-              );
-            })()}
+              ))}
+            </div>
           </ScrollReveal>
 
           {/* Map */}
@@ -258,7 +255,7 @@ export default function Location() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <ScrollReveal direction="left">
               <img
-                src={ADD5}
+                src={favouritesSection?.imageUrl || ADD5}
                 alt="Uluwatu coastal view"
                 className="w-full aspect-[4/3] object-cover"
               />
@@ -294,33 +291,39 @@ export default function Location() {
       </section>
 
       {/* Sunset CTA */}
-      <section className="relative">
-        <div
-          className="relative h-[450px] lg:h-[550px] flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: `url(${SUNSET})` }}
-        >
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 text-center px-6">
-            <ScrollReveal>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-light mb-6 tracking-tight">
-                Your Uluwatu Escape Awaits
-              </h2>
-              <hr className="section-divider-white mx-auto" />
-              <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
-                Experience the best of Bali's southern coast from the comfort of The Rang.
-              </p>
-              <a
-                href="https://www.airbnb.com.au/rooms/1625996459378222841"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline-white"
-              >
-                Book Your Stay
-              </a>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      {(() => {
+        const cta = getContent("location.cta");
+        const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
+        return (
+          <section className="relative">
+            <div
+              className="relative h-[450px] lg:h-[550px] flex items-center justify-center bg-cover bg-center"
+              style={{ backgroundImage: `url(${cta?.imageUrl || SUNSET})` }}
+            >
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="relative z-10 text-center px-6">
+                <ScrollReveal>
+                  <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-light mb-6 tracking-tight">
+                    {cta?.title || "Your Uluwatu Escape Awaits"}
+                  </h2>
+                  <hr className="section-divider-white mx-auto" />
+                  <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
+                    {cta?.body || "Experience the best of Bali's southern coast from the comfort of The Rang."}
+                  </p>
+                  <a
+                    href={airbnbLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline-white"
+                  >
+                    {cta?.buttonText || "Book Your Stay"}
+                  </a>
+                </ScrollReveal>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       <Footer />
     </div>
