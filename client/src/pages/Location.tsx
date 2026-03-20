@@ -19,49 +19,7 @@ const ADD5 = `${CDN}/additional_5_ad208b16.jpeg`;
 const MAPS_EMBED_DEFAULT = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d115.0870!3d-8.8140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDgnNTAuNCJTIDExNcKwMDUnMTMuMiJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid";
 const MAPS_URL_DEFAULT = "https://maps.google.com/?q=-8.814,115.087";
 
-const nearbyAttractions = [
-  {
-    category: "Surf Breaks",
-    icon: Waves,
-    items: [
-      { name: "Race Tracks", distance: "Direct view from villa" },
-      { name: "Outside Corner", distance: "2 min walk" },
-      { name: "Temples", distance: "3 min walk" },
-      { name: "Uluwatu", distance: "5 min walk" },
-      { name: "Padang Padang", distance: "8 min drive" },
-    ],
-  },
-  {
-    category: "Dining",
-    icon: UtensilsCrossed,
-    items: [
-      { name: "Single Fin", distance: "3 min walk" },
-      { name: "Yuki Japanese", distance: "5 min drive" },
-      { name: "Avli Greek", distance: "5 min drive" },
-      { name: "Teja Modern European", distance: "5 min drive" },
-      { name: "Ulu Cliffhouse", distance: "8 min drive" },
-    ],
-  },
-  {
-    category: "Wellness & Fitness",
-    icon: Dumbbell,
-    items: [
-      { name: "Studio Fondue (Pilates)", distance: "5 min drive" },
-      { name: "Ulu Active (Gym)", distance: "5 min drive" },
-      { name: "Spa treatments", distance: "Available in-villa" },
-    ],
-  },
-  {
-    category: "Landmarks",
-    icon: MapPin,
-    items: [
-      { name: "Uluwatu Temple", distance: "10 min drive" },
-      { name: "Suluban Beach", distance: "Private staircase access" },
-      { name: "Garuda Wisnu Kencana", distance: "15 min drive" },
-      { name: "Ngurah Rai Airport", distance: "35 min drive" },
-    ],
-  },
-];
+// nearbyAttractions now comes from CMS
 
 const travelTimesDefault = [
   { from: "Ngurah Rai Airport", time: "35 min" },
@@ -110,6 +68,45 @@ export default function Location() {
         return { from: from?.trim(), time: time?.trim() };
       }).filter(t => t.from && t.time)
     : travelTimesDefault;
+
+  // Parse nearby attractions from CMS (format: "Name: distance" per line)
+  function parseNearby(cms: any, icon: any, defaultItems: {name: string, distance: string}[]) {
+    const items = cms?.body
+      ? cms.body.split("\n").map((line: string) => {
+          const colonIdx = line.indexOf(": ");
+          return { name: line.substring(0, colonIdx).trim(), distance: line.substring(colonIdx + 2).trim() };
+        }).filter((i: any) => i.name && i.distance)
+      : defaultItems;
+    return { category: cms?.title || "", icon, items };
+  }
+
+  const nearbyAttractions = [
+    parseNearby(getContent("location.nearby_surf"), Waves, [
+      { name: "Race Tracks", distance: "Direct view from villa" },
+      { name: "Outside Corner", distance: "2 min walk" },
+      { name: "Temples", distance: "3 min walk" },
+      { name: "Uluwatu", distance: "5 min walk" },
+      { name: "Padang Padang", distance: "8 min drive" },
+    ]),
+    parseNearby(getContent("location.nearby_dining"), UtensilsCrossed, [
+      { name: "Single Fin", distance: "3 min walk" },
+      { name: "Yuki Japanese", distance: "5 min drive" },
+      { name: "Avli Greek", distance: "5 min drive" },
+      { name: "Teja Modern European", distance: "5 min drive" },
+      { name: "Ulu Cliffhouse", distance: "8 min drive" },
+    ]),
+    parseNearby(getContent("location.nearby_wellness"), Dumbbell, [
+      { name: "Studio Fondue (Pilates)", distance: "5 min drive" },
+      { name: "Ulu Active (Gym)", distance: "5 min drive" },
+      { name: "Spa treatments", distance: "Available in-villa" },
+    ]),
+    parseNearby(getContent("location.nearby_landmarks"), MapPin, [
+      { name: "Uluwatu Temple", distance: "10 min drive" },
+      { name: "Suluban Beach", distance: "Private staircase access" },
+      { name: "Garuda Wisnu Kencana", distance: "15 min drive" },
+      { name: "Ngurah Rai Airport", distance: "35 min drive" },
+    ]),
+  ];
 
   // Parse local favourites from CMS body (format: "Name: Description")
   const localFavourites = favouritesSection?.body
