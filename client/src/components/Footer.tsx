@@ -56,10 +56,15 @@ export default function Footer() {
             <h4 className="text-[11px] tracking-[0.2em] uppercase font-medium text-white/40 mb-6">
               Address
             </h4>
-            <p className="text-sm text-white/60 leading-relaxed mb-6">
+            <a
+              href="https://maps.google.com/?q=Jl.+Labuansait+No.83,+Pecatu,+Kuta+Selatan,+Bali+80361,+Indonesia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/60 hover:text-white/90 leading-relaxed mb-6 block transition-colors"
+            >
               Jl. Labuansait No.83, Pecatu,<br />
               Kuta Selatan, Bali 80361, Indonesia
-            </p>
+            </a>
             <a
               href={airbnbLink}
               target="_blank"

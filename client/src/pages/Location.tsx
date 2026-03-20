@@ -148,21 +148,24 @@ export default function Location() {
             </div>
           </ScrollReveal>
 
-          {/* Key Features */}
+          {/* Key Features — editable in admin under location.key_features */}
           <ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
-              {[
-                "Unmatched cliffside vistas",
-                "World-class dining",
-                "Premium wellness culture",
-                "Renowned surf breaks",
-                "Cultural authenticity",
-              ].map((f) => (
-                <div key={f} className="text-center border border-black/10 p-5">
-                  <p className="text-sm text-black/60">{f}</p>
+            {(() => {
+              const featuresCms = getContent("location.key_features");
+              const features = featuresCms?.body
+                ? featuresCms.body.split("\n").filter(Boolean)
+                : ["Unmatched cliffside vistas", "World-class dining", "Premium wellness culture", "Renowned surf breaks", "Cultural authenticity"];
+              const cols = features.length <= 4 ? `grid-cols-${features.length}` : "grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
+              return (
+                <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16`}>
+                  {features.map((f) => (
+                    <div key={f} className="text-center border border-black/10 p-5">
+                      <p className="text-sm text-black/60">{f}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </ScrollReveal>
 
           {/* Map */}

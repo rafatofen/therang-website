@@ -1,6 +1,6 @@
 /**
  * Booking Page — Rates & Reservation Info
- * Now reads links from the CMS database with hardcoded fallbacks
+ * All content editable from admin CMS
  */
 
 import Navbar from "@/components/Navbar";
@@ -10,58 +10,91 @@ import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
 import SeoHead from "@/components/SeoHead";
 import { Check, ExternalLink, Users, BedDouble, Bath, Maximize, Car, Waves, Shield, UserCheck, Briefcase } from "lucide-react";
-import { useSiteLinks } from "@/hooks/useCmsContent";
+import { useSiteLinks, useSiteContent } from "@/hooks/useCmsContent";
 
 const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37";
 const INFINITY_POOL = `${CDN}/infinity-pool-ocean-acCdzZRHLqou6ZYkfrkQ79.webp`;
 const SUNSET = `${CDN}/bali-ocean-sunset-Z9rMjV67zYWT98s87jGFhB.webp`;
 const LIVING = `${CDN}/living_room_1_1d0ea4f3.jpeg`;
 
-const villaSpecs = [
-  { icon: Users, label: "Guests", value: "10" },
-  { icon: BedDouble, label: "Bedrooms", value: "5" },
-  { icon: Bath, label: "Bathrooms", value: "5.5" },
-  { icon: Maximize, label: "Living Area", value: "500+ sqm" },
-  { icon: Car, label: "Parking", value: "1 car + 10 scooters" },
-  { icon: Waves, label: "Pool", value: "25m infinity" },
+const specIcons = [Users, BedDouble, Bath, Maximize, Car, Waves];
+const serviceIcons = [Shield, UserCheck, Briefcase, Car];
+
+const defaultSpecs = [
+  { label: "Guests", value: "10" },
+  { label: "Bedrooms", value: "5" },
+  { label: "Bathrooms", value: "5.5" },
+  { label: "Living Area", value: "500+ sqm" },
+  { label: "Parking", value: "1 car + 10 scooters" },
+  { label: "Pool", value: "25m infinity" },
 ];
 
-const services = [
-  { icon: Shield, title: "24-Hour Security", desc: "Round-the-clock security for your peace of mind." },
-  { icon: UserCheck, title: "Dedicated Villa Manager", desc: "A personal villa manager to assist with all your needs." },
-  { icon: Briefcase, title: "Professional Butlers", desc: "Attentive butler service for a seamless experience." },
-  { icon: Car, title: "Parking", desc: "Parking for 1 car and 10 scooters on the premises." },
+const defaultServices = [
+  { title: "24-Hour Security", desc: "Round-the-clock security for your peace of mind." },
+  { title: "Dedicated Villa Manager", desc: "A personal villa manager to assist with all your needs." },
+  { title: "Professional Butlers", desc: "Attentive butler service for a seamless experience." },
+  { title: "Parking", desc: "Parking for 1 car and 10 scooters on the premises." },
 ];
 
-const included = [
-  "Daily housekeeping",
-  "Welcome amenities",
-  "High-speed Wi-Fi throughout",
-  "Smart TVs in all rooms",
-  "Full air conditioning (double-glazed)",
-  "Premium King Koil mattresses",
-  "Luxury bathroom amenities",
-  "In-villa sauna & ice bath",
-  "25m infinity pool with pool bar",
-  "Private staircase toward beach",
-  "Dedicated parking",
-  "Exclusive partner discounts",
+const defaultIncluded = [
+  "Daily housekeeping", "Welcome amenities", "High-speed Wi-Fi throughout",
+  "Smart TVs in all rooms", "Full air conditioning (double-glazed)", "Premium King Koil mattresses",
+  "Luxury bathroom amenities", "In-villa sauna & ice bath", "25m infinity pool with pool bar",
+  "Private staircase toward beach", "Dedicated parking", "Exclusive partner discounts",
 ];
 
-const houseRules = [
-  "Check-in: 3:00 PM",
-  "Check-out: 11:00 AM",
-  "No smoking indoors",
-  "No parties or events without prior arrangement",
-  "Pets allowed (upon request)",
+const defaultRules = [
+  "Check-in: 3:00 PM", "Check-out: 11:00 AM", "No smoking indoors",
+  "No parties or events without prior arrangement", "Pets allowed (upon request)",
   "Quiet hours: 10:00 PM – 8:00 AM",
 ];
 
 export default function Booking() {
-  const { getLink, isLoading } = useSiteLinks();
+  const { getLink, isLoading: linksLoading } = useSiteLinks();
+  const { getContent, isLoading: contentLoading } = useSiteContent();
+
+  if (linksLoading || contentLoading) return <PageSkeleton />;
+
   const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
 
-  if (isLoading) return <PageSkeleton />;
+  // Villa specs from CMS
+  const specs = defaultSpecs.map((def, i) => {
+    const cms = getContent(`booking.spec_${['guests','bedrooms','bathrooms','area','parking','pool'][i]}`);
+    return {
+      icon: specIcons[i],
+      label: cms?.title || def.label,
+      value: cms?.body || def.value,
+    };
+  });
+
+  // Services from CMS
+  const services = defaultServices.map((def, i) => {
+    const cms = getContent(`booking.service_${i + 1}`);
+    return {
+      icon: serviceIcons[i],
+      title: cms?.title || def.title,
+      desc: cms?.body || def.desc,
+    };
+  });
+
+  // Included from CMS
+  const includedCms = getContent("booking.included");
+  const included = includedCms?.body
+    ? includedCms.body.split("\n").filter(Boolean)
+    : defaultIncluded;
+
+  // House rules from CMS
+  const rulesCms = getContent("booking.house_rules");
+  const houseRules = rulesCms?.body
+    ? rulesCms.body.split("\n").filter(Boolean)
+    : defaultRules;
+
+  // Hero from CMS
+  const hero = getContent("booking.hero");
+  const heroImage = hero?.imageUrl || INFINITY_POOL;
+  const heroTitle = hero?.title || "Booking";
+  const heroSubtitle = hero?.subtitle || "Experience the ultimate luxury getaway. Booking your stay at The Rang is seamless and secure.";
+
   return (
     <div className="min-h-screen">
       <SeoHead
@@ -72,9 +105,9 @@ export default function Booking() {
       <Navbar />
 
       <PageHero
-        title="Booking"
-        subtitle="Experience the ultimate luxury getaway. Booking your stay at The Rang is seamless and secure."
-        image={INFINITY_POOL}
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        image={heroImage}
       />
 
       {/* Villa Overview */}
@@ -87,14 +120,14 @@ export default function Booking() {
               </h2>
               <hr className="section-divider mx-auto" />
               <p className="text-black/60 leading-[1.8] text-[15px]">
-                The Rang is a five-bedroom luxury villa accommodating up to 10 guests. Every detail has been crafted for an exceptional experience.
+                {getContent("booking.overview")?.body || "The Rang is a five-bedroom luxury villa accommodating up to 10 guests. Every detail has been crafted for an exceptional experience."}
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {villaSpecs.map((spec) => (
+              {specs.map((spec) => (
                 <div key={spec.label} className="text-center border border-black/10 p-6">
                   <spec.icon className="mx-auto mb-3 text-black/40" size={24} />
                   <p className="font-serif text-2xl font-light mb-1">{spec.value}</p>
@@ -112,7 +145,7 @@ export default function Booking() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <ScrollReveal direction="left">
               <img
-                src={LIVING}
+                src={getContent("booking.services")?.imageUrl || LIVING}
                 alt="Living area at The Rang"
                 className="w-full aspect-[4/3] object-cover"
               />
@@ -202,17 +235,17 @@ export default function Booking() {
       <section className="relative">
         <div
           className="relative h-[500px] lg:h-[600px] flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: `url(${SUNSET})` }}
+          style={{ backgroundImage: `url(${getContent("booking.cta")?.imageUrl || SUNSET})` }}
         >
           <div className="absolute inset-0 bg-black/55" />
           <div className="relative z-10 text-center px-6 max-w-2xl">
             <ScrollReveal>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-light mb-6 tracking-tight">
-                Reserve Your Stay
+                {getContent("booking.cta")?.title || "Reserve Your Stay"}
               </h2>
               <hr className="section-divider-white mx-auto" />
               <p className="text-white/60 leading-[1.8] text-[15px] mb-4">
-                The Rang is available for booking exclusively through Airbnb. Check availability, view rates, and secure your dates directly on our listing.
+                {getContent("booking.cta")?.body || "The Rang is available for booking exclusively through Airbnb. Check availability, view rates, and secure your dates directly on our listing."}
               </p>
               <p className="text-white/40 text-xs mb-10">
                 Rates vary by season. Please check Airbnb for current pricing and availability.
