@@ -222,9 +222,7 @@ export default function Home() {
                 <div className="text-black/60 leading-[1.8] text-[15px] mb-8 whitespace-pre-line">
                   {philosophy?.body || "The Rang is more than a name — it's a philosophy captured in architecture."}
                 </div>
-                <Link href="/space" className="btn-outline">
-                  {philosophy?.buttonText || "Our Philosophy"}
-                </Link>
+
               </div>
             </ScrollReveal>
           </div>
@@ -447,12 +445,14 @@ export default function Home() {
                 >
                   {bookingCta?.buttonText || "Book on Airbnb"}
                 </a>
-                <Link href="/location" className="btn-outline-white">
-                  <span className="flex items-center gap-2">
-                    <MapPin size={14} />
-                    View Location
-                  </span>
-                </Link>
+                <a
+                  href="https://wa.me/61403712311?text=Hi%2C+I'm+interested+in+booking+The+Rang+Uluwatu.+Could+you+help+me+with+availability+and+rates%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-white"
+                >
+                  Book Direct
+                </a>
               </div>
             </ScrollReveal>
           </div>

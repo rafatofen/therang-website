@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Space", href: "/space" },
   { label: "Partners", href: "/partners" },
   { label: "Location", href: "/location" },
-  { label: "3D Tour", href: "/tour" },
+  // { label: "3D Tour", href: "/tour" }, // Hidden per client request - route still exists
   { label: "Booking", href: "/booking" },
 ];
 

@@ -7,7 +7,6 @@ const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Space", href: "/space" },
   { label: "Partners", href: "/partners" },
-  { label: "3D Tour", href: "/tour" },
   { label: "Location", href: "/location" },
   { label: "Booking", href: "/booking" },
 ];
@@ -65,14 +64,24 @@ export default function Footer() {
               Jl. Labuansait No.83, Pecatu,<br />
               Kuta Selatan, Bali 80361, Indonesia
             </a>
-            <a
-              href={airbnbLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-white text-[10px]"
-            >
-              Book on Airbnb
-            </a>
+            <div className="flex flex-col gap-3">
+              <a
+                href={airbnbLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-white text-[10px]"
+              >
+                Book on Airbnb
+              </a>
+              <a
+                href="https://wa.me/61403712311?text=Hi%2C+I'm+interested+in+booking+The+Rang+Uluwatu.+Could+you+help+me+with+availability+and+rates%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-white text-[10px]"
+              >
+                Book Direct
+              </a>
+            </div>
           </div>
         </div>
 
