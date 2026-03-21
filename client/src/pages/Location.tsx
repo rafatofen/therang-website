@@ -307,14 +307,24 @@ export default function Location() {
                   <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
                     {cta?.body || "Experience the best of Bali's southern coast from the comfort of The Rang."}
                   </p>
-                  <a
-                    href={airbnbLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-outline-white"
-                  >
-                    {cta?.buttonText || "Book Your Stay"}
-                  </a>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a
+                      href={airbnbLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline-white"
+                    >
+                      {cta?.buttonText || "Book on Airbnb"}
+                    </a>
+                    <a
+                      href="https://wa.me/61403712311?text=Hi%2C+I'm+interested+in+booking+The+Rang+Uluwatu.+Could+you+help+me+with+availability+and+rates%3F"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline-white"
+                    >
+                      Book Direct
+                    </a>
+                  </div>
                 </ScrollReveal>
               </div>
             </div>
