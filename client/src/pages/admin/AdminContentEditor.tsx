@@ -119,20 +119,34 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     sections: [
       { key: "booking.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
       { key: "booking.overview", label: "Villa Overview Text", fields: ["title", "body"] },
-      { key: "booking.spec_guests", label: "Spec: Guests", fields: ["title", "body"] },
-      { key: "booking.spec_bedrooms", label: "Spec: Bedrooms", fields: ["title", "body"] },
-      { key: "booking.spec_bathrooms", label: "Spec: Bathrooms", fields: ["title", "body"] },
-      { key: "booking.spec_area", label: "Spec: Living Area", fields: ["title", "body"] },
-      { key: "booking.spec_parking", label: "Spec: Parking", fields: ["title", "body"] },
-      { key: "booking.spec_pool", label: "Spec: Pool", fields: ["title", "body"] },
-      { key: "booking.service_1", label: "Service 1", fields: ["title", "body"] },
-      { key: "booking.service_2", label: "Service 2", fields: ["title", "body"] },
-      { key: "booking.service_3", label: "Service 3", fields: ["title", "body"] },
-      { key: "booking.service_4", label: "Service 4", fields: ["title", "body"] },
-      { key: "booking.services", label: "Services & Amenities Section", fields: ["title", "imageUrl"] },
+      // Spec Row 1
+      { key: "booking.spec_guests", label: "Row 1 — Spec: Guests (icon + label + value)", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec_bedrooms", label: "Row 1 — Spec: Bedrooms", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec_bathrooms", label: "Row 1 — Spec: Bathrooms", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec_area", label: "Row 1 — Spec: Living Area", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec_parking", label: "Row 1 — Spec: Parking", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec_laundry", label: "Row 1 — Spec: Laundry", fields: ["title", "body", "extraData"] },
+      // Services 2 + Spec Row 2
+      { key: "booking.services2", label: "Pool & Wellness — Section (title + text + image)", fields: ["title", "body", "imageUrl"] },
+      { key: "booking.spec2_1", label: "Row 2 — Spec 1", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec2_2", label: "Row 2 — Spec 2", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec2_3", label: "Row 2 — Spec 3", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec2_4", label: "Row 2 — Spec 4", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec2_5", label: "Row 2 — Spec 5", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec2_6", label: "Row 2 — Spec 6", fields: ["title", "body", "extraData"] },
+      // Services 3 + Spec Row 3
+      { key: "booking.services3", label: "Staff & Concierge — Section (title + text + image)", fields: ["title", "body", "imageUrl"] },
+      { key: "booking.spec3_1", label: "Row 3 — Spec 1", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec3_2", label: "Row 3 — Spec 2", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec3_3", label: "Row 3 — Spec 3", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec3_4", label: "Row 3 — Spec 4", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec3_5", label: "Row 3 — Spec 5", fields: ["title", "body", "extraData"] },
+      { key: "booking.spec3_6", label: "Row 3 — Spec 6", fields: ["title", "body", "extraData"] },
+      // Rest
       { key: "booking.included", label: "What's Included (one item per line)", fields: ["title", "body"] },
       { key: "booking.house_rules", label: "House Rules (one rule per line)", fields: ["title", "body"] },
       { key: "booking.additional_services", label: "Additional Services Box", fields: ["title", "body", "subtitle"] },
+      { key: "booking.staff", label: "Friendly Staff Section", fields: ["title", "body", "imageUrl"] },
       { key: "booking.cta", label: "Booking CTA", fields: ["title", "body", "imageUrl"] },
     ],
   },
@@ -140,8 +154,6 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     label: "Partners Page",
     sections: [
       { key: "partners.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
-      { key: "partners.intro", label: "Intro Section", fields: ["title", "body"] },
-      { key: "partners.cta", label: "CTA Section", fields: ["title", "body", "imageUrl"] },
     ],
   },
 };
@@ -153,6 +165,7 @@ const FIELD_LABELS: Record<string, string> = {
   buttonText: "Button Text",
   buttonLink: "Button Link",
   imageUrl: "Image / Video",
+  extraData: "Icon Name",
 };
 
 const FIELD_HINTS: Record<string, string> = {
@@ -170,6 +183,7 @@ const FIELD_HINTS: Record<string, string> = {
   "booking.included.body": "One item per line. E.g.: Daily housekeeping",
   "booking.house_rules.body": "One rule per line. E.g.: Check-in: 3:00 PM",
   "booking.spec_guests.body": "Value shown in the box. E.g.: 10",
+  "booking.spec_guests.extraData": "Icon name. Available: Users, BedDouble, Bath, Maximize, Car, Waves, Shield, UserCheck, Briefcase, ChefHat, Wind, Flame, Snowflake, Footprints, Droplets, Binoculars, WashingMachine, Wifi, Star, MapPin. Paste as JSON: {\"icon\": \"Waves\"}",
   "booking.spec_bedrooms.body": "Value shown in the box. E.g.: 5",
   "booking.spec_bathrooms.body": "Value shown in the box. E.g.: 5.5",
   "booking.spec_area.body": "Value shown in the box. E.g.: 500+ sqm",
