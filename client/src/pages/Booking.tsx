@@ -156,7 +156,7 @@ export default function Booking() {
                   Services
                 </span>
                 <h2 className="font-serif text-3xl md:text-4xl font-light mt-3 mb-6 tracking-tight">
-                  Services & Amenities
+                  {getContent("booking.services")?.title || "Services & Amenities"}
                 </h2>
                 <hr className="section-divider" />
                 <div className="space-y-6 mt-6">
@@ -186,7 +186,7 @@ export default function Booking() {
                   Inclusions
                 </span>
                 <h2 className="font-serif text-3xl md:text-4xl font-light mt-3 mb-6 tracking-tight">
-                  What's Included
+                  {getContent("booking.included")?.title || "What's Included"}
                 </h2>
                 <hr className="section-divider" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
@@ -206,7 +206,7 @@ export default function Booking() {
                   Policies
                 </span>
                 <h2 className="font-serif text-3xl md:text-4xl font-light mt-3 mb-6 tracking-tight">
-                  House Rules
+                  {getContent("booking.house_rules")?.title || "House Rules"}
                 </h2>
                 <hr className="section-divider" />
                 <div className="space-y-3 mt-6">
@@ -219,11 +219,15 @@ export default function Booking() {
                 </div>
 
                 <div className="mt-10 p-6 border border-black/10 bg-[#FAFAF8]">
-                  <h3 className="font-serif text-xl font-light mb-3">Additional Services</h3>
+                  <h3 className="font-serif text-xl font-light mb-3">
+                    {getContent("booking.additional_services")?.title || "Additional Services"}
+                  </h3>
                   <p className="text-sm text-black/60 leading-relaxed mb-4">
-                    Private chef, airport transfers, surf lessons, spa treatments, and more can be arranged through your villa manager.
+                    {getContent("booking.additional_services")?.body || "Private chef, airport transfers, surf lessons, spa treatments, and more can be arranged through your villa manager."}
                   </p>
-                  <p className="text-xs text-black/40">Contact details provided upon booking confirmation.</p>
+                  <p className="text-xs text-black/40">
+                    {getContent("booking.additional_services")?.subtitle || "Contact details provided upon booking confirmation."}
+                  </p>
                 </div>
               </div>
             </ScrollReveal>
