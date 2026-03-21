@@ -182,6 +182,8 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     label: "Partners Page",
     sections: [
       { key: "partners.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
+      { key: "partners.intro", label: "Intro Section", fields: ["title", "body"] },
+      { key: "partners.cta", label: "CTA Section", fields: ["title", "body", "imageUrl"] },
     ],
   },
 };
