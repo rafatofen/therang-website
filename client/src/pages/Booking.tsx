@@ -339,6 +339,13 @@ export default function Booking() {
               </ScrollReveal>
             ))}
           </div>
+          <ScrollReveal>
+            <div className="text-center mt-14">
+              <a href="/space" className="btn-outline">
+                Explore The Space
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
