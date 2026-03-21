@@ -131,17 +131,8 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
       { key: "location.cta", label: "CTA Section", fields: ["title", "body", "buttonText", "imageUrl"] },
     ],
   },
-  tour: {
-    label: "3D Tour Page",
-    sections: [
-      { key: "tour.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
-      { key: "tour.embed", label: "Matterport Embed URL", fields: ["body"] },
-      { key: "tour.highlights_section", label: "Tour Highlights — Title & Description", fields: ["title", "body"] },
-      { key: "tour.highlight_1", label: "Highlight 1 — Living Spaces", fields: ["title", "body", "imageUrl"] },
-      { key: "tour.highlight_2", label: "Highlight 2 — Infinity Pool", fields: ["title", "body", "imageUrl"] },
-      { key: "tour.highlight_3", label: "Highlight 3 — Master Suite", fields: ["title", "body", "imageUrl"] },
-    ],
-  },
+  // 3D Tour page hidden from nav — sections moved to Booking page
+  // tour: { ... }
   booking: {
     label: "Booking Page",
     sections: [
@@ -175,6 +166,10 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
       { key: "booking.house_rules", label: "House Rules (one rule per line)", fields: ["title", "body"] },
       { key: "booking.additional_services", label: "Additional Services Box", fields: ["title", "body", "subtitle"] },
       { key: "booking.staff", label: "Friendly Staff Section", fields: ["title", "body", "imageUrl"] },
+      { key: "tour.highlights_section", label: "Tour Highlights — Title & Description", fields: ["title", "body"] },
+      { key: "tour.highlight_1", label: "Tour Highlight 1", fields: ["title", "body", "imageUrl"] },
+      { key: "tour.highlight_2", label: "Tour Highlight 2", fields: ["title", "body", "imageUrl"] },
+      { key: "tour.highlight_3", label: "Tour Highlight 3", fields: ["title", "body", "imageUrl"] },
       { key: "booking.cta", label: "Booking CTA", fields: ["title", "body", "imageUrl"] },
     ],
   },
