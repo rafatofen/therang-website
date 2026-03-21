@@ -8,9 +8,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Loader2, Save, ChevronDown, ChevronRight, Plus, Film, Image as ImageIcon } from "lucide-react";
+import { Loader2, Save, ChevronDown, ChevronRight, Plus, Film, Image as ImageIcon,
+  Users, BedDouble, Bath, Maximize, Car, Waves, Shield, UserCheck, Briefcase,
+  ChefHat, Wind, Flame, Snowflake, Footprints, Droplets, Binoculars,
+  WashingMachine, Wifi, Star, MapPin, Camera, Coffee, Sun, Moon,
+  Heart, Dumbbell, Music, Book, Utensils, Laptop } from "lucide-react";
 import { toast } from "sonner";
 import ImageUpload from "@/components/admin/ImageUpload";
+
+// Available icons for spec boxes
+const ICON_OPTIONS = [
+  { name: "Users", icon: Users },
+  { name: "BedDouble", icon: BedDouble },
+  { name: "Bath", icon: Bath },
+  { name: "Maximize", icon: Maximize },
+  { name: "Car", icon: Car },
+  { name: "Waves", icon: Waves },
+  { name: "Shield", icon: Shield },
+  { name: "UserCheck", icon: UserCheck },
+  { name: "Briefcase", icon: Briefcase },
+  { name: "ChefHat", icon: ChefHat },
+  { name: "Wind", icon: Wind },
+  { name: "Flame", icon: Flame },
+  { name: "Snowflake", icon: Snowflake },
+  { name: "Footprints", icon: Footprints },
+  { name: "Droplets", icon: Droplets },
+  { name: "Binoculars", icon: Binoculars },
+  { name: "WashingMachine", icon: WashingMachine },
+  { name: "Wifi", icon: Wifi },
+  { name: "Star", icon: Star },
+  { name: "MapPin", icon: MapPin },
+];
 
 // Define all pages and their expected sections
 const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; label: string; fields: string[] }[] }> = {
@@ -367,6 +395,34 @@ export default function AdminContentEditor() {
                             className="mt-1.5 bg-white/5 border-white/10 text-white resize-y"
                             placeholder="Enter body text..."
                           />
+                        </div>
+                      );
+                    }
+
+                    if (field === "extraData") {
+                      const currentIcon = (() => {
+                        try { return JSON.parse(getVal(section.key, field) || "{}").icon || ""; } catch { return ""; }
+                      })();
+                      return (
+                        <div key={field}>
+                          <Label className="text-white/60 text-xs uppercase tracking-wide">Icon</Label>
+                          <div className="mt-2 grid grid-cols-5 gap-2">
+                            {ICON_OPTIONS.map(({ name, icon: Icon }) => (
+                              <button
+                                key={name}
+                                onClick={() => setVal(section.key, field, JSON.stringify({ icon: name }))}
+                                className={`flex flex-col items-center gap-1 p-2 rounded-lg border transition-all ${
+                                  currentIcon === name
+                                    ? "border-white bg-white/20 text-white"
+                                    : "border-white/10 text-white/40 hover:border-white/30 hover:text-white/70"
+                                }`}
+                                title={name}
+                              >
+                                <Icon size={18} />
+                                <span className="text-[9px] truncate w-full text-center">{name}</span>
+                              </button>
+                            ))}
+                          </div>
                         </div>
                       );
                     }
