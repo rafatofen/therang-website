@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { useSiteContent } from "@/hooks/useCmsContent";
+import { useSiteContent, useSiteLinks } from "@/hooks/useCmsContent";
 
 // CDN URLs — ALL REAL AIRBNB PHOTOS (fallback defaults)
 const DEFAULTS = {
@@ -72,6 +72,8 @@ function GalleryImage({ src, alt, className = "" }: { src: string; alt: string; 
 
 export default function SpaceNew() {
   const { getContent, isLoading } = useSiteContent();
+  const { getLink } = useSiteLinks();
+  const airbnbLink = getLink("airbnb") !== "#" ? getLink("airbnb") : "https://www.airbnb.com.au/rooms/1625996459378222841";
 
   // Helper: get imageUrl from CMS or fallback
   const img = (sectionKey: string, fallback: string): string => {
@@ -193,7 +195,7 @@ export default function SpaceNew() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white/50 text-[11px] tracking-[0.35em] uppercase font-medium mb-3"
           >
-            The Villa — A Detailed Exploration
+            {getContent("space.intro")?.subtitle || "The Villa — A Detailed Exploration"}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -201,7 +203,7 @@ export default function SpaceNew() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight leading-[1.1]"
           >
-            The Space
+            {getContent("space.intro")?.title || "The Space"}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -209,7 +211,7 @@ export default function SpaceNew() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="text-white/60 text-base md:text-lg mt-4 max-w-xl leading-relaxed"
           >
-            Five bedrooms, 500+ sqm of sculptural living, perched on Uluwatu's most dramatic cliff.
+            {getContent("space.intro")?.body || "Five bedrooms, 500+ sqm of sculptural living, perched on Uluwatu's most dramatic cliff."}
           </motion.p>
         </div>
       </section>
@@ -328,29 +330,41 @@ export default function SpaceNew() {
       ))}
 
       {/* ===== BOOKING CTA ===== */}
-      <section className="bg-black text-white py-20 lg:py-28 mt-12">
-        <div className="max-w-3xl mx-auto text-center px-6">
-          <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-tight mb-6">
-              Experience The Rang
-            </h2>
-            <p className="text-white/50 text-[15px] leading-relaxed mb-10 max-w-lg mx-auto">
-              Ready for an unforgettable stay? Book your escape to The Rang Uluwatu and discover luxury living on Bali's most dramatic coastline.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://www.airbnb.com.au/rooms/1625996459378222841"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline-white"
-              >
-                Book on Airbnb
-              </a>
-              <Link href="/tour" className="btn-outline-white">
-                3D Virtual Tour
-              </Link>
-            </div>
-          </ScrollReveal>
+      <section className="relative mt-12">
+        <div
+          className="relative h-[500px] lg:h-[600px] flex items-center justify-center bg-cover bg-center"
+          style={{ backgroundImage: `url(${getContent("space.cta")?.imageUrl || DEFAULTS.HERO_POOL})` }}
+        >
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="relative z-10 text-center px-6 max-w-2xl">
+            <ScrollReveal>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tight mb-6">
+                {getContent("space.cta")?.title || "Experience The Rang"}
+              </h2>
+              <hr className="section-divider-white mx-auto" />
+              <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
+                {getContent("space.cta")?.body || "Ready for an unforgettable stay? Book your escape to The Rang Uluwatu and discover luxury living on Bali's most dramatic coastline."}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={airbnbLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-white"
+                >
+                  Book on Airbnb
+                </a>
+                <a
+                  href="https://wa.me/61403712311?text=Hi%2C+I'm+interested+in+booking+The+Rang+Uluwatu.+Could+you+help+me+with+availability+and+rates%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-white"
+                >
+                  Book Direct
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
