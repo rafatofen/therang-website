@@ -44,8 +44,6 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
   space: {
     label: "Space Page",
     sections: [
-      { key: "space.intro", label: "Page Intro (label, title, description)", fields: ["subtitle", "title", "body"] },
-      { key: "space.cta", label: "Booking CTA (title, text, background image)", fields: ["title", "body", "imageUrl"] },
       // Section 1: The Villa (hero + 4 grid)
       { key: "space.overview", label: "The Villa — Hero", fields: ["title", "subtitle", "imageUrl"] },
       { key: "space.overview_g1", label: "The Villa — Grid 1", fields: ["imageUrl"] },
@@ -142,6 +140,8 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
     label: "Partners Page",
     sections: [
       { key: "partners.hero", label: "Hero Section", fields: ["title", "subtitle", "imageUrl"] },
+      { key: "partners.intro", label: "Intro Section", fields: ["title", "body"] },
+      { key: "partners.cta", label: "CTA Section", fields: ["title", "body", "imageUrl"] },
     ],
   },
 };

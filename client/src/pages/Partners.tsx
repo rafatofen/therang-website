@@ -10,7 +10,7 @@ import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
 import SeoHead from "@/components/SeoHead";
 import { MapPin } from "lucide-react";
-import { usePartners, useSiteLinks } from "@/hooks/useCmsContent";
+import { usePartners, useSiteLinks, useSiteContent } from "@/hooks/useCmsContent";
 
 const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028985962/YUz2cqTs4AvjUqQvfTGS37";
 const ADD8 = `${CDN}/additional_8_84f7e0ce.jpeg`;
@@ -68,6 +68,7 @@ const defaultPartners = [
 export default function Partners() {
   const { partners: dbPartners, isLoading } = usePartners();
   const { getLink } = useSiteLinks();
+  const { getContent } = useSiteContent();
 
   // Use DB partners or fallback
   const partners = dbPartners.length > 0 ? dbPartners : defaultPartners;
@@ -84,9 +85,9 @@ export default function Partners() {
       <Navbar />
 
       <PageHero
-        title="Partners"
-        subtitle="Exclusive guest perks and collaborations with Uluwatu's finest establishments."
-        image={ADD8}
+        title={getContent("partners.hero")?.title || "Partners"}
+        subtitle={getContent("partners.hero")?.subtitle || "Exclusive guest perks and collaborations with Uluwatu's finest establishments."}
+        image={getContent("partners.hero")?.imageUrl || ADD8}
       />
 
       {/* Introduction */}
@@ -95,11 +96,11 @@ export default function Partners() {
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-3xl md:text-4xl font-light mb-6 tracking-tight">
-                Exclusive Guest Perks & Collaborations
+                {getContent("partners.intro")?.title || "Exclusive Guest Perks & Collaborations"}
               </h2>
               <hr className="section-divider mx-auto" />
               <p className="text-black/60 leading-[1.8] text-[15px]">
-                We are proud to collaborate with a small selection of local partners who share our commitment to quality, craft, and experience. Guests of The Rang enjoy exclusive benefits at these esteemed establishments.
+                {getContent("partners.intro")?.body || "We are proud to collaborate with a small selection of local partners who share our commitment to quality, craft, and experience. Guests of The Rang enjoy exclusive benefits at these esteemed establishments."}
               </p>
             </div>
           </ScrollReveal>
@@ -166,25 +167,41 @@ export default function Partners() {
       </section>
 
       {/* CTA */}
-      <section className="bg-black text-white section-spacing">
-        <div className="container text-center">
-          <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl font-light mb-6 tracking-tight">
-              Discover Uluwatu's Finest
-            </h2>
-            <hr className="section-divider-white mx-auto" />
-            <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
-              All partner perks are exclusively available to guests of The Rang during their stay. Details and booking assistance provided by your villa manager.
-            </p>
-            <a
-              href={airbnbLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-white"
-            >
-              Book Your Stay
-            </a>
-          </ScrollReveal>
+      <section className="relative">
+        <div
+          className="relative py-24 lg:py-32 flex items-center justify-center bg-cover bg-center"
+          style={{ backgroundImage: `url(${getContent("partners.cta")?.imageUrl || `${CDN}/bali-ocean-sunset-Z9rMjV67zYWT98s87jGFhB.webp`})` }}
+        >
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 container text-center">
+            <ScrollReveal>
+              <h2 className="font-serif text-3xl md:text-4xl text-white font-light mb-6 tracking-tight">
+                {getContent("partners.cta")?.title || "Discover Uluwatu's Finest"}
+              </h2>
+              <hr className="section-divider-white mx-auto" />
+              <p className="text-white/60 leading-[1.8] text-[15px] max-w-xl mx-auto mb-10">
+                {getContent("partners.cta")?.body || "All partner perks are exclusively available to guests of The Rang during their stay. Details and booking assistance provided by your villa manager."}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={airbnbLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-white"
+                >
+                  Book on Airbnb
+                </a>
+                <a
+                  href="https://wa.me/61403712311?text=Hi%2C+I'm+interested+in+booking+The+Rang+Uluwatu.+Could+you+help+me+with+availability+and+rates%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-white"
+                >
+                  Book Direct
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
