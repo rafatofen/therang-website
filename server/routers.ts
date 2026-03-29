@@ -85,14 +85,20 @@ export const appRouter = router({
 
   // ===== CONTENT MANAGEMENT =====
   content: router({
-    // Public: get all content
+    // Public: get all content (filtered — no internal fields)
     getAll: publicProcedure.query(async () => {
-      return getAllContent();
+      const all = await getAllContent();
+      return all.map(({ sectionKey, title, subtitle, body, buttonText, buttonLink, imageUrl, extraData }) => ({
+        sectionKey, title, subtitle, body, buttonText, buttonLink, imageUrl, extraData,
+      }));
     }),
     getByKey: publicProcedure
       .input(z.object({ sectionKey: z.string() }))
       .query(async ({ input }) => {
-        return getContentByKey(input.sectionKey);
+        const item = await getContentByKey(input.sectionKey);
+        if (!item) return undefined;
+        const { sectionKey, title, subtitle, body, buttonText, buttonLink, imageUrl, extraData } = item;
+        return { sectionKey, title, subtitle, body, buttonText, buttonLink, imageUrl, extraData };
       }),
     // Admin: update content
     update: adminAuthProcedure
@@ -235,7 +241,8 @@ export const appRouter = router({
   // ===== SITE LINKS =====
   links: router({
     getAll: publicProcedure.query(async () => {
-      return getAllLinks();
+      const links = await getAllLinks();
+      return links.map(({ linkKey, label, url }) => ({ linkKey, label, url }));
     }),
     update: adminAuthProcedure
       .input(z.object({
