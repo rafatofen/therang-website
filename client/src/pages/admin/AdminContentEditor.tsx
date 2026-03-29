@@ -59,6 +59,7 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
       { key: "home.feature_8", label: "Feature: Indoor-Outdoor Flow", fields: ["title", "body", "imageUrl"] },
       { key: "home.location", label: "Location Section", fields: ["title", "subtitle", "body", "buttonText", "buttonLink", "imageUrl"] },
       { key: "home.booking", label: "Booking CTA", fields: ["title", "subtitle", "body", "buttonText", "imageUrl"] },
+      { key: "home.partners_section", label: "Partners Section — Image", fields: ["imageUrl"] },
       { key: "home.gallery_1", label: "Gallery Image 1", fields: ["imageUrl"] },
       { key: "home.gallery_2", label: "Gallery Image 2", fields: ["imageUrl"] },
       { key: "home.gallery_3", label: "Gallery Image 3", fields: ["imageUrl"] },

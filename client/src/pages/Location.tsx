@@ -16,7 +16,7 @@ const CLIFF_AERIAL = `${CDN}/uluwatu-cliff-aerial-oNZekmYsnH9nNSqa8KvQJT.webp`;
 const SUNSET = `${CDN}/bali-ocean-sunset-Z9rMjV67zYWT98s87jGFhB.webp`;
 const ADD5 = `${CDN}/additional_5_ad208b16.jpeg`;
 
-const MAPS_EMBED_DEFAULT = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d115.0870!3d-8.8140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDgnNTAuNCJTIDExNcKwMDUnMTMuMiJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid";
+const MAPS_EMBED_DEFAULT = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943.2!2d115.08617!3d-8.81972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd246b8b7e3b12f%3A0x1b2e3f4g5h6i7j8k!2sJl.+Labuansait+No.83%2C+Pecatu%2C+Kec.+Kuta+Sel.%2C+Kabupaten+Badung%2C+Bali+80361!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid";
 const MAPS_URL_DEFAULT = "https://maps.google.com/?q=-8.814,115.087";
 
 // nearbyAttractions now comes from CMS

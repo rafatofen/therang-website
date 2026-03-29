@@ -382,7 +382,7 @@ export default function Home() {
             <ScrollReveal direction="left">
               <div className="relative">
                 <img
-                  src={ADD8}
+                  src={getContent("home.partners_section")?.imageUrl || ADD8}
                   alt="Dining experience near The Rang"
                   className="w-full aspect-[4/3] object-cover"
                 />
