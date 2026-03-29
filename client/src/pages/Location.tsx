@@ -16,7 +16,7 @@ const CLIFF_AERIAL = `${CDN}/uluwatu-cliff-aerial-oNZekmYsnH9nNSqa8KvQJT.webp`;
 const SUNSET = `${CDN}/bali-ocean-sunset-Z9rMjV67zYWT98s87jGFhB.webp`;
 const ADD5 = `${CDN}/additional_5_ad208b16.jpeg`;
 
-const MAPS_EMBED_DEFAULT = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d115.0870!3d-8.8140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDgnNTAuNCJTIDExNcKwMDUnMTMuMiJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid";
+const MAPS_EMBED_DEFAULT = "https://maps.google.com/maps?q=The+Rang+Uluwatu,+Jl.+Labuansait+No.83,+Pecatu,+Bali&output=embed";
 const MAPS_URL_DEFAULT = "https://maps.google.com/?q=-8.814,115.087";
 
 // nearbyAttractions now comes from CMS
