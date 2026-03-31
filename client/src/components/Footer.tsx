@@ -93,7 +93,7 @@ export default function Footer() {
           <p className="text-xs text-white/30">
             Website developed by{" "}
             <a
-              href="https://rafatofen.netlify.app/"
+              href="https://rafatofen.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/50 hover:text-white transition-colors"
