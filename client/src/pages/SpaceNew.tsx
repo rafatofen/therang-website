@@ -288,8 +288,34 @@ export default function SpaceNew() {
                   </ScrollReveal>
                 ))}
               </div>
+            ) : section.grid.length === 6 ? (
+              /* 2x3 layout — 2 rows of 3 */
+              <>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                  {section.grid.slice(0, 3).map((imgUrl, i) => (
+                    <ScrollReveal key={i} delay={i * 0.08}>
+                      <GalleryImage
+                        src={imgUrl}
+                        alt={`${section.title} ${i + 1}`}
+                        className="aspect-[4/3]"
+                      />
+                    </ScrollReveal>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-3 md:mt-4">
+                  {section.grid.slice(3).map((imgUrl, i) => (
+                    <ScrollReveal key={i} delay={i * 0.08}>
+                      <GalleryImage
+                        src={imgUrl}
+                        alt={`${section.title} ${i + 4}`}
+                        className="aspect-[4/3]"
+                      />
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </>
             ) : (
-              /* Mixed masonry for 5+ images */
+              /* Mixed masonry for 5, 7+ images */
               <>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                   {section.grid.slice(0, 3).map((imgUrl, i) => (
