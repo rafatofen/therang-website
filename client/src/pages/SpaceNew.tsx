@@ -141,7 +141,6 @@ export default function SpaceNew() {
         img("space.master_g4", DEFAULTS.BED3),
         img("space.master_g5", DEFAULTS.BED4),
         img("space.master_g6", DEFAULTS.BED5),
-        img("space.master_g7", DEFAULTS.BATH2),
       ],
     },
     {
@@ -157,7 +156,6 @@ export default function SpaceNew() {
         img("space.bedrooms_g4", DEFAULTS.BATH2),
         img("space.bedrooms_g5", DEFAULTS.BATH3),
         img("space.bedrooms_g6", DEFAULTS.BATH4),
-        img("space.bedrooms_g7", DEFAULTS.BATH5),
       ],
     },
     {
