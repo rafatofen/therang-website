@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theranguluwatu.com/sitemap.xml
