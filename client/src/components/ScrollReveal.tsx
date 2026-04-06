@@ -41,6 +41,7 @@ export default function ScrollReveal({
   };
 
   return (
+  <div className="overflow-hidden">
     <motion.div
       initial={getInitial()}
       whileInView={getAnimate()}
@@ -54,5 +55,6 @@ export default function ScrollReveal({
     >
       {children}
     </motion.div>
-  );
+  </div>
+);
 }
