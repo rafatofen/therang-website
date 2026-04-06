@@ -93,8 +93,8 @@ export default function Home() {
     return cms?.imageUrl || defaultImg;
   });
 
-  // Hero video URL from CMS or fallback
-  const videoUrl = heroVideo?.imageUrl || VIDEO_URL_DEFAULT;
+  // Hero video URL — only from CMS, no hardcoded fallback
+  const videoUrl = heroVideo?.imageUrl || null;
   const heroPoster = hero?.imageUrl || HERO_POOL;
 
   // Use DB testimonials or fallback
@@ -123,16 +123,17 @@ export default function Home() {
 
       {/* ===== SECTION 1: HERO VIDEO ===== */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster={heroPoster}
-        >
-          <source src={videoUrl} type="video/mp4" />
-        </video>
+        {videoUrl && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 text-center px-6">
@@ -205,7 +206,7 @@ export default function Home() {
                 <img
                   src={philosophy?.imageUrl || ADD2_EXTERIOR}
                   alt="The Rang exterior architecture"
-                  className="w-full aspect-[4/5] object-cover"
+                  className="w-full aspect-[4/3] object-cover"
                 />
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 border border-black/10 hidden lg:block" />
               </div>

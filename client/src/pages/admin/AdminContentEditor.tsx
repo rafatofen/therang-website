@@ -96,6 +96,10 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
       { key: "space.master_g1", label: "Master Suite — Grid 1", fields: ["imageUrl"] },
       { key: "space.master_g2", label: "Master Suite — Grid 2", fields: ["imageUrl"] },
       { key: "space.master_g3", label: "Master Suite — Grid 3", fields: ["imageUrl"] },
+      { key: "space.master_g4", label: "Master Suite — Grid 4", fields: ["imageUrl"] },
+      { key: "space.master_g5", label: "Master Suite — Grid 5", fields: ["imageUrl"] },
+      { key: "space.master_g6", label: "Master Suite — Grid 6", fields: ["imageUrl"] },
+      { key: "space.master_g7", label: "Master Suite — Grid 7", fields: ["imageUrl"] },
       // Section 5: Guest Bedrooms (hero + 7 grid)
       { key: "space.bedrooms", label: "Guest Bedrooms — Hero", fields: ["title", "subtitle", "imageUrl"] },
       { key: "space.bedrooms_g1", label: "Guest Bedrooms — Grid 1", fields: ["imageUrl"] },
@@ -110,11 +114,6 @@ const PAGE_STRUCTURE: Record<string, { label: string; sections: { key: string; l
       { key: "space.wellness_g1", label: "Wellness & Outdoor — Grid 1", fields: ["imageUrl"] },
       { key: "space.wellness_g2", label: "Wellness & Outdoor — Grid 2", fields: ["imageUrl"] },
       { key: "space.wellness_g3", label: "Wellness & Outdoor — Grid 3", fields: ["imageUrl"] },
-      { key: "space.wellness_g4", label: "Wellness & Outdoor — Grid 4", fields: ["imageUrl"] },
-      { key: "space.wellness_g5", label: "Wellness & Outdoor — Grid 5", fields: ["imageUrl"] },
-      { key: "space.wellness_g6", label: "Wellness & Outdoor — Grid 6", fields: ["imageUrl"] },
-      { key: "space.wellness_g7", label: "Wellness & Outdoor — Grid 7", fields: ["imageUrl"] },
-      { key: "space.wellness_g8", label: "Wellness & Outdoor — Grid 8", fields: ["imageUrl"] },
     ],
   },
   location: {

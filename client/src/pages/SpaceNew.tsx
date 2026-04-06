@@ -138,6 +138,10 @@ export default function SpaceNew() {
         img("space.master_g1", DEFAULTS.BALCONY),
         img("space.master_g2", DEFAULTS.BATH_MASTER),
         img("space.master_g3", DEFAULTS.ADD7),
+        img("space.master_g4", DEFAULTS.BED3),
+        img("space.master_g5", DEFAULTS.BED4),
+        img("space.master_g6", DEFAULTS.BED5),
+        img("space.master_g7", DEFAULTS.BATH2),
       ],
     },
     {
@@ -166,11 +170,6 @@ export default function SpaceNew() {
         img("space.wellness_g1", DEFAULTS.ADD11),
         img("space.wellness_g2", DEFAULTS.ADD12),
         img("space.wellness_g3", DEFAULTS.ADD13),
-        img("space.wellness_g4", DEFAULTS.ADD14),
-        img("space.wellness_g5", DEFAULTS.ADD15),
-        img("space.wellness_g6", DEFAULTS.BATH_HALF1),
-        img("space.wellness_g7", DEFAULTS.BATH_HALF2),
-        img("space.wellness_g8", DEFAULTS.GARAGE),
       ],
     },
   ];
